@@ -1,0 +1,9 @@
+module CrumbManager::QuestionsCrumbs
+  # ==== Params
+  #   crumb_options[:role_string]
+  #
+  def questions_index_crumbs(crumb_options)
+    add_crumb("Manage", manage_program_path)
+    add_crumb "Customize #{crumb_options[:role_string]} Form"
+  end
+end

@@ -1,0 +1,7 @@
+module CrumbManager::MembershipQuestionsCrumbs
+  # No crumb options
+  def membership_questions_index_crumbs(crumb_options)    
+    add_crumb("Manage", manage_program_path)
+    add_crumb("Customize #{crumb_options[:form_name]}")
+  end
+end

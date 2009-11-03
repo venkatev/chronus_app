@@ -1,0 +1,7 @@
+module CrumbManager::AnalyticsCrumbs
+  # No crumb options
+  def analytics_index_crumbs
+    add_crumb("Manage", manage_program_path)
+    add_crumb("Analytics")
+  end
+end

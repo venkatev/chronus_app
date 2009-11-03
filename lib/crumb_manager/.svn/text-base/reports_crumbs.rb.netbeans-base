@@ -1,0 +1,21 @@
+module CrumbManager::ReportsCrumbs
+  # No crumb options
+  def reports_index_crumbs
+    add_crumb("Manage", manage_program_path)
+    add_crumb("Reports")
+  end
+
+  # No crumb options
+  def reports_executive_summary_crumbs
+    add_crumb("Manage", manage_program_path)
+    add_crumb("Reports", reports_path)
+    add_crumb("Executive Summary Report")
+  end
+
+  # No crumb options
+  def reports_match_crumbs
+    add_crumb("Manage", manage_program_path)
+    add_crumb("Reports", reports_path)
+    add_crumb("Match Rank Report")
+  end
+end

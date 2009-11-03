@@ -1,0 +1,84 @@
+# = Application level crumb definitions
+#
+# Parent module for all controller specific crumb definitions.
+#
+# The crumb definitions are grouped into modules based on the controller name
+# like <code>UsersCrumbs</code> defining crumbs for all pages inside
+# <code>UsersController</code>, <code>MentorRequestsCrumbs</code> for
+# <code>MentorRequestsController</code> etc., (ControllerName + Crumbs).
+#
+# Each of the modules defines one method per action in the corresponding controller
+# sticking to the naming convention <b><controller_name>_<action_name>_crumbs</b>.
+#
+# e.g.:
+#   UsersCrumbs#users_show_crumbs
+#   UsersCrumbs#users_index_crumbs
+#   ProgramsCrumbs#users_invite_users_crumbs
+#
+# Each of the above crumb methods accepts a <i>crumb_actions</i> hash containing
+# the variables and flags needed for rendering the crumbs for the action.
+# Thus, the crumb modules are made independent of the controller data as much
+# as possible (except for things like current_user, which is assumed to be
+# omnipresent throught the request cycle).
+# 
+# Author    ::  Vikram Venkatesan  (mailto:vikram@chronus.com)
+# Copyright ::  Copyright (c) 2009 Chronus Corporation
+#
+
+module CrumbManager
+  def self.included(base)
+    base.send :include, InstanceMethods
+  end
+
+  module InstanceMethods
+    # Include all controller specific crumb modules.
+    def self.included(base)
+      base.send :include,
+<<<<<<< .mine
+          UsersCrumbs,
+          ProgramsCrumbs,
+          AnnouncementsCrumbs,
+          MentorRequestsCrumbs,
+          MembershipRequestsCrumbs,
+          QuestionsCrumbs,
+          TopicsCrumbs,
+          QaCrumbs,
+          GroupsCrumbs,
+          ArticlesCrumbs,
+          PasswordsCrumbs,
+          FacilitationMessagesCrumbs,
+          MessagesCrumbs,
+          SurveysCrumbs,
+          AnalyticsCrumbs,
+          ProgramInvitationsCrumbs,
+          ConfidentialityAuditLogsCrumbs,
+          MembershipQuestionsCrumbs,
+          ThemesCrumbs,
+          MentoringTipsCrumbs
+=======
+        UsersCrumbs,
+        ProgramsCrumbs,
+        AnnouncementsCrumbs,
+        MentorRequestsCrumbs,
+        MembershipRequestsCrumbs,
+        QuestionsCrumbs,
+        TopicsCrumbs,
+        ReportsCrumbs,
+        QaCrumbs,
+        GroupsCrumbs,
+        ArticlesCrumbs,
+        PasswordsCrumbs,
+        FacilitationMessagesCrumbs,
+        MessagesCrumbs,
+        SurveysCrumbs,
+        AnalyticsCrumbs,
+        ProgramInvitationsCrumbs,
+        ConfidentialityAuditLogsCrumbs,
+        MembershipQuestionsCrumbs,
+        ThemesCrumbs,
+        MentoringTipsCrumbs,
+        HandbooksCrumbs
+>>>>>>> .r3370
+    end
+  end
+end

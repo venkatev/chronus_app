@@ -1,0 +1,48 @@
+module CrumbManager::AnnouncementsCrumbs
+  # No crumb options
+  def announcements_new_crumbs
+    add_crumb("Manage", manage_program_path)
+    add_crumb("Announcements", announcements_path)
+    add_crumb("New Announcement")
+  end
+
+  # ==== Params
+  #   crumb_options[:is_admin]
+  #
+  def announcements_index_crumbs(crumb_options)
+    if crumb_options[:is_admin]
+      add_crumb("Manage", manage_program_path)
+    else
+      add_crumb("Home", program_root_path)
+    end
+
+    add_crumb("Announcements")
+  end
+
+  # ==== Params
+  #   crumb_options[:announcement]
+  #   crumb_options[:is_admin]
+  #
+  def announcements_show_crumbs(crumb_options)
+    if crumb_options[:is_admin]
+      add_crumb("Manage", manage_program_path)
+    else
+      add_crumb("Home", program_root_path)
+    end
+
+    add_crumb("Announcements", announcements_path)
+    add_crumb(crumb_options[:announcement].title)
+  end
+
+  # ==== Params
+  #   crumb_options[:announcement]
+  #
+  def announcements_edit_crumbs(crumb_options)
+    add_crumb("Manage", manage_program_path)
+    add_crumb("Announcements", announcements_path)
+    add_crumb(
+      crumb_options[:announcement].title,
+      announcement_path(crumb_options[:announcement]))
+    add_crumb("Edit Announcement")
+  end
+end

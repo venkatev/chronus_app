@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+  <head>
+    <title><%= yield(:title) || APP_CONFIG[:site_name] %></title>
+    <%= stylesheet_link_tag 'common', 'flash_manager', 'pages' %>
+    <%= javascript_include_tag :defaults, :cache => true %>
+  </head>
+  <body>
+    <div id="container">
+      <div id="header" class="clearfix">
+        <%= link_to "CHRONUS", root_path, :id => 'logo_link' %>
+        <ul id="top_links">
+          <% if logged_in? %>
+            <li><%= link_to 'Logout', logout_path %></li>
+          <% else %>
+            <li><%= link_to 'Login', login_path %></li>
+            <li><%= link_to 'Signup', signup_path %></li>
+          <% end %>
+        </ul>
+        <div id="tagline_and_tabs">
+          <h5 id="tagline">
+            <!-- Product tag line -->
+            making mentoring available to everyone
+          </h5>
+          <ul id='tabs' class="clearfix">
+            <% @controller.ordered_tabs && @controller.ordered_tabs.each do |all_tabs| %>
+              <% tab_class = 'selected' if all_tabs.active %>
+              <li class="<%= tab_class %>">
+                <%= link_to all_tabs.label, all_tabs.url %>
+              </li>
+              <div class="nav_divider">
+              </div>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+      <div id="content" class="clearfix">
+        <div id="title_pane">
+          <%= breadcrumbs_bar %>
+          <h1><%= yield(:title) %></h1>
+          <%= render_back_link %>
+        </div>
+        <%= flash_messages %>
+        <div id="page_canvas" class="clearfix">
+          <%= yield :layout %>
+        </div>
+      </div>
+      <div id="footer" class="clearfix">
+        <div id="copyrights">
+          @ 2009, Chronus Corporation
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

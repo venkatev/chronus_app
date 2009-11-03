@@ -1,0 +1,7 @@
+module CrumbManager::MentoringTipsCrumbs
+  # No crumb options
+  def mentoring_tips_index_crumbs
+    add_crumb("Manage", manage_program_path)
+    add_crumb("Mentoring Tips")
+  end
+end

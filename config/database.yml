@@ -1,0 +1,23 @@
+development:
+   adapter: mysql
+   encoding: utf8
+   database: chronus_development
+   username: root
+   password:
+   pool: 5
+  
+test:
+   adapter: mysql
+   encoding: utf8
+   database: chronus_test
+   username: root
+   password:
+   pool: 5
+  
+production:
+   adapter: mysql
+   encoding: utf8
+   database: chronus_production
+   username: root
+   password:
+   pool: 5

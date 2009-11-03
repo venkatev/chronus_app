@@ -1,0 +1,23 @@
+module CrumbManager::MembershipRequestsCrumbs
+  # ==== Params
+  #   crumb_options[:filter]
+  #
+  def membership_requests_index_crumbs(crumb_options)
+    if current_user.view_management_console?
+      add_crumb("Manage", manage_program_path)
+    else
+      add_crumb("Homw", program_root_path)
+    end
+    
+    add_crumb("#{crumb_options[:list].capitalize} Membership requests", membership_requests_path(:list => crumb_options[:list]))
+
+    # Set crumbs depending on the view
+    if crumb_options[:filter] == RoleConstants::STUDENT.name.pluralize
+      add_crumb("From #{_Mentees}")
+    elsif crumb_options[:filter] == RoleConstants::MENTOR.name.pluralize
+      add_crumb("From #{_Mentors}")
+    else
+      add_crumb("All")
+    end
+  end
+end

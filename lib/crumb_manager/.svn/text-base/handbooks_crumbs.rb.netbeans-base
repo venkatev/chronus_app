@@ -1,0 +1,8 @@
+module CrumbManager::HandbooksCrumbs
+
+  def handbooks_index_crumbs
+    add_crumb("Manage", manage_program_path)
+    add_crumb("Handbooks")
+  end
+
+end

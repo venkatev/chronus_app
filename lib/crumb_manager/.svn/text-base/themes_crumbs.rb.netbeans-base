@@ -1,0 +1,19 @@
+module CrumbManager::ThemesCrumbs
+  # No crumb options
+  def themes_new_crumbs
+    add_crumb("Manage", manage_program_path)
+    add_crumb("Customize Appearance", themes_path)
+    add_crumb("Add theme")
+  end
+
+  def themes_index_crumbs
+    add_crumb("Manage", manage_program_path)
+    add_crumb("Customize Appearance")
+  end
+
+  def themes_edit_crumbs
+    add_crumb("Manage", manage_program_path)
+    add_crumb("Customize Appearance", themes_path)
+    add_crumb("Edit theme")
+  end
+end

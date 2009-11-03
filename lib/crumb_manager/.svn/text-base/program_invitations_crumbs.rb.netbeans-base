@@ -1,0 +1,15 @@
+module CrumbManager::ProgramInvitationsCrumbs
+  # No crumb options
+  def program_invitations_index_crumbs(opts)
+    add_crumb("Manage", manage_program_path)
+    role_str = case opts[:filter]
+    when 'mentors'
+      _mentors
+    when 'mentees'
+      _mentees
+    when 'admins'
+      "administrators"
+    end
+    add_crumb("Pending #{role_str} invitations")
+  end
+end

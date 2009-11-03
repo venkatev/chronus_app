@@ -1,0 +1,63 @@
+module CrumbManager::UsersCrumbs
+  # ==== Params
+  #   crumb_options[:profile_owner]
+  #   crumb_options[:is_self_view]
+  #   crumb_options[:is_admin_only_view])
+  #
+  def users_show_crumbs(crumb_options)
+    if crumb_options[:is_self_view]
+      add_crumb "Home", program_root_path
+      add_crumb crumb_options[:profile_owner].name
+    elsif !crumb_options[:is_admin_only_view]
+      pluraized_role = crumb_options[:profile_owner].mentor? ? _Mentors : _Mentees
+      add_crumb pluraized_role.capitalize, users_path(:view => pluraized_role)
+      add_crumb crumb_options[:profile_owner].name
+    end
+  end
+
+  # ==== Params
+  #    crumb_options[:user]
+  #    crumb_options[:is_first_visit]
+  #
+  def users_edit_crumbs(crumb_options)
+    # No crumbs for editing own profile. Only backlink to Profile page.
+    if crumb_options[:first_visit]
+      @no_crumbs = true
+    else
+      pluraized_role = crumb_options[:user].mentor? ? _Mentors : _Mentees
+      add_crumb pluraized_role, users_path(:view => pluraized_role)
+      add_crumb crumb_options[:user].name, user_path(crumb_options[:user])
+      add_crumb "Edit Profile"
+    end
+  end
+
+  # ==== Params
+  #    crumb_options[:search_query]
+  #    crumb_options[:role]
+  #
+  def users_index_crumbs(crumb_options)
+    unless crumb_options[:search_query].blank?
+      add_crumb _Mentors, users_path
+      add_crumb "Search '#{crumb_options[:search_query]}'"
+    end
+
+    # Students listing
+    if crumb_options[:role] == UserRole::STUDENT
+      back_mark(_Mentees)
+      render :action => 'students_list' and return
+    else
+      back_mark(_Mentors)
+    end
+  end
+
+  # No crumb options
+  def users_new_mentor_crumbs
+    add_crumb("Manage", manage_program_path)
+    add_crumb("Add #{_Mentor} Profile")
+  end
+
+  def users_account_settings_crumbs
+    add_crumb("Home", program_root_path)
+    add_crumb("Account Settings")
+  end
+end
